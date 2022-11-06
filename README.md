@@ -1,6 +1,6 @@
-# Backend Colombian Cars Parking App:
+# Frontend Colombian Cars Parking App:
 
-## Repositorio Frontend
+## Repositorio Backend
 
 [![Back End](https://badgen.net/badge/BackEnd/here/green?icon=github)](https://github.com/mvm11/back_colombian_cars)
 
