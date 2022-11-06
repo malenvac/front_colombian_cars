@@ -8,6 +8,30 @@ const registerVehicleEntry = (data) => {
     });
 }
 
+const getAllVehicles = () => {
+    return axiosConfig.get('vehicle/findAllVehicles',{
+        headers:{
+            'Content-type': 'application/json'
+        }
+    });
+}
+
+const getAllTickets = () => {
+    return axiosConfig.get('ticket/findAllTickets',{
+        headers:{
+            'Content-type': 'application/json'
+        }
+    });
+}
+
+const registerVehicleDeparture = (vehicleLicensePlate) => {
+    return axiosConfig.put(`vehicle/registerDeparture/${vehicleLicensePlate}`,{
+        headers:{
+            'Content-type': 'application/json'
+        }
+    });
+}
+
 export {
-    registerVehicleEntry,
+    registerVehicleEntry, getAllVehicles, getAllTickets, registerVehicleDeparture,
 }
