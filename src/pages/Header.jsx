@@ -27,9 +27,56 @@ export const Header = () => {
                 activeClassName="active"
                 exact
                 aria-current="page"
+                to="/newCell"
+              >
+                Add new cell
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                activeClassName="active"
+                exact
+                aria-current="page"
+                to="/cells"
+              >
+                Cells
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                activeClassName="active"
+                exact
+                aria-current="page"
+                to="/newUser"
+              >
+                Add new user
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                activeClassName="active"
+                exact
+                aria-current="page"
+                to="/users"
+              >
+                Users
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                activeClassName="active"
+                exact
+                aria-current="page"
                 to="/"
               >
-                Home
+                Add new entry
               </NavLink>
             </li>
             <li className="nav-item">
@@ -40,7 +87,7 @@ export const Header = () => {
                 aria-current="page"
                 to="/vehicleDeparture"
               >
-                Register a departure
+                Add new departure
               </NavLink>
             </li>
             <li className="nav-item">
@@ -52,6 +99,30 @@ export const Header = () => {
                 to="/tickets"
               >
                 Tickets
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                activeClassName="active"
+                exact
+                aria-current="page"
+                to="/payInvoice"
+              >
+                Pay invoice
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                activeClassName="active"
+                exact
+                aria-current="page"
+                to="/invoices"
+              >
+                Invoices
               </NavLink>
             </li>
           </ul>

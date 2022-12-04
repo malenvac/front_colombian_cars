@@ -1,11 +1,13 @@
 import Swal from "sweetalert2";
 import React, { useState } from "react";
-import { registerVehicleEntry } from "../services/VehicleService";
+import { saveCell } from "../services/VehicleService";
 import "../syles/styles.css";
 
-export const EntryPage = () => {
+export const NewCellPage = () => {
+  // Add a new cell
+
   const [valoresForm, setValoresForm] = useState({});
-  const { ownerDni = "", licensePlate = "", type = "" } = valoresForm;
+  const { cellName = "" } = valoresForm;
 
   const handleOnChange = ({ target }) => {
     const { name, value } = target;
@@ -14,10 +16,8 @@ export const EntryPage = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    const ticket = {
-      ownerDni,
-      licensePlate,
-      type,
+    const cell = {
+      cellName,
     };
     try {
       Swal.fire({
@@ -25,7 +25,7 @@ export const EntryPage = () => {
         text: "Cargando...",
       });
       Swal.showLoading();
-      const { data } = await registerVehicleEntry(ticket);
+      const { data } = await saveCell(cell);
       console.log(data);
       Swal.close();
     } catch (error) {
@@ -45,38 +45,19 @@ export const EntryPage = () => {
       <div className="right">
         <form onSubmit={(event) => handleOnSubmit(event)}>
           <section className="copy">
-            <h2>Register Vehicle</h2>
+            <h2>Add new Cell</h2>
             <div className="register-container"></div>
           </section>
-
-          <div className="input-container dni">
-            <label for="dni">DNI</label>
+          <div class="form-group">
+            <label for="cell name">Cell name</label>
             <input
               required
-              type="text"
-              name="ownerDni"
-              value={ownerDni}
+              name="cellName"
+              value={cellName}
               onChange={(event) => handleOnChange(event)}
-            />
-          </div>
-          <div className="input-container licenseplate">
-            <label for="licenseplate">License plate</label>
-            <input
-              required
               type="text"
-              name="licensePlate"
-              value={licensePlate}
-              onChange={(event) => handleOnChange(event)}
-            />
-          </div>
-          <div className="input-container type">
-            <label for="type">Vehicle type</label>
-            <input
-              required
-              type="text"
-              name="type"
-              value={type}
-              onChange={(event) => handleOnChange(event)}
+              class="form-control"
+              placeholder="Enter the cell name"
             />
           </div>
           <button className="signup-btn" type="submit">

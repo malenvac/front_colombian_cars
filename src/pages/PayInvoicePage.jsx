@@ -1,11 +1,10 @@
 import Swal from "sweetalert2";
 import React, { useState } from "react";
-import { registerVehicleEntry } from "../services/VehicleService";
-import "../syles/styles.css";
+import { payInvoice } from "../services/VehicleService";
 
-export const EntryPage = () => {
+export const PayInvoicePage = () => {
   const [valoresForm, setValoresForm] = useState({});
-  const { ownerDni = "", licensePlate = "", type = "" } = valoresForm;
+  const { userDni = "", reference = "" } = valoresForm;
 
   const handleOnChange = ({ target }) => {
     const { name, value } = target;
@@ -14,19 +13,18 @@ export const EntryPage = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    const ticket = {
-      ownerDni,
-      licensePlate,
-      type,
+    const invoice = {
+      userDni,
+      reference,
     };
+
     try {
       Swal.fire({
         allowOutSideClick: false,
-        text: "Cargando...",
+        text: "Loading...",
       });
       Swal.showLoading();
-      const { data } = await registerVehicleEntry(ticket);
-      console.log(data);
+      await payInvoice(invoice);
       Swal.close();
     } catch (error) {
       console.log(error);
@@ -38,49 +36,41 @@ export const EntryPage = () => {
     <div className="split-screen">
       <div className="left">
         <section className="copy">
-          <h1>All security in one place</h1>
-          <p>We offer over 1000 parking lots for your vehicle</p>
+          <h1>Pay the invoices</h1>
+          <p>and sleep peacefully</p>
         </section>
       </div>
       <div className="right">
         <form onSubmit={(event) => handleOnSubmit(event)}>
           <section className="copy">
-            <h2>Register Vehicle</h2>
+            <h2>Pay invoice</h2>
             <div className="register-container"></div>
           </section>
 
-          <div className="input-container dni">
-            <label for="dni">DNI</label>
-            <input
-              required
-              type="text"
-              name="ownerDni"
-              value={ownerDni}
-              onChange={(event) => handleOnChange(event)}
-            />
-          </div>
           <div className="input-container licenseplate">
-            <label for="licenseplate">License plate</label>
+            <label for="licenseplate">User dni</label>
             <input
               required
               type="text"
-              name="licensePlate"
-              value={licensePlate}
+              name="userDni"
+              value={userDni}
               onChange={(event) => handleOnChange(event)}
+              className="form-control"
             />
-          </div>
-          <div className="input-container type">
-            <label for="type">Vehicle type</label>
+
+            <label for="licenseplate">Invoice reference</label>
             <input
               required
               type="text"
-              name="type"
-              value={type}
+              name="reference"
+              value={reference}
               onChange={(event) => handleOnChange(event)}
+              className="form-control"
             />
           </div>
+
           <button className="signup-btn" type="submit">
-            Register
+            Pay
           </button>
         </form>
       </div>
